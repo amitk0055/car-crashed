@@ -1,11 +1,13 @@
-import React, { useState,useReducer } from 'react';
+import React, { useState } from 'react';
+import moment from 'moment';
+
 const AppContext = React.createContext({});
 export default AppContext;
 export const AppConsumer = AppContext.Consumer;
 
 
 export const AppProvider = (props) => {
-    const [selectedTime,setSelectedTime]= useState("2021-10-12")
+    const [selectedTime,setSelectedTime]= useState(moment().format('YYYY-MM-DD'))
     const appData = {
         selectedTime,
         setSelectedTime

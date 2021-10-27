@@ -1,14 +1,13 @@
-import { useContext } from 'react'
-import {Button,Spinner} from 'react-bootstrap'
-import { useEffect, useState } from 'react'
-import {  Container } from 'react-bootstrap';
+import { useEffect, useState,useContext } from 'react'
+import {Button,Container} from 'react-bootstrap'
 import Header from '../../Components/Layout/Header';
 import RestService from '../../Service/api.service';
 import CardView from './CardView';
+import Spinner from '../../Components/Spinner/Spinner'
 import NoDataFound from '../../Components/NoDataFound/NoDataFound'
-import './cars.css'
 import TableView from './TableVIew';
 import AppContext from '../../Store/AppContext';
+import './cars.css'
 
 
 const Cars = () => {
@@ -82,7 +81,7 @@ const Cars = () => {
        {listView && <TableView value={crashList}/> }
        </>}
        {isLoading && <div className="jcc">
-       <Button variant="light" disabled>
+       {/* <Button variant="light" disabled>
         <Spinner
           as="span"
           animation="border"
@@ -91,7 +90,7 @@ const Cars = () => {
           aria-hidden="true"
         />
         <span className="mx-2">{'Loading Please wait... '}</span>
-      </Button>
+      </Button> */}
        </div>}
        {crashList.length > 0 && <div className="py-3">
           <Button disabled={paginationNo === 0} onClick={()=> setPaginationNo(paginationNo - 1 )} className="mx-2">Back</Button>
@@ -99,6 +98,7 @@ const Cars = () => {
           <span className="mx-2">Page No : {paginationNo +1}</span>
        </div>}
     </Container>
+    <Spinner value={isLoading}/>
   </>)
 }
 export default Cars
